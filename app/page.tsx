@@ -391,6 +391,136 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ────── About Section ────── */}
+      <section className="py-24 px-6" id="about">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <div className="section-divider mx-auto mb-6" />
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              Meet Your Host
+            </h2>
+            <p className="mt-4 text-muted max-w-lg mx-auto">
+              The mind behind Alsaydaliyah — bridging pharma leadership with
+              digital innovation.
+            </p>
+          </div>
+
+          <div className="glass-card overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+              {/* Portrait */}
+              <div className="lg:col-span-2 relative min-h-[400px] lg:min-h-[560px]">
+                <Image
+                  src="/dr-mina.png"
+                  alt="Dr. Mina Zakaria Fakhry"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+                {/* Gradient overlay on mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#0a0a0a]/80" />
+              </div>
+
+              {/* Bio content */}
+              <div className="lg:col-span-3 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
+                {/* Title pill */}
+                <span className="pill-badge w-fit mb-6">
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                  </svg>
+                  Host &amp; Executive Producer
+                </span>
+
+                {/* Name */}
+                <h3 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">
+                  Dr. Mina Zakaria Fakhry
+                </h3>
+
+                {/* Role */}
+                <p className="mt-2 text-accent font-medium text-lg">
+                  Strategic Visionary &amp; Digital Transformation Leader
+                </p>
+
+                {/* Credentials */}
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-glass border border-glass-border text-xs font-medium text-muted">
+                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
+                    </svg>
+                    DBA
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-glass border border-glass-border text-xs font-medium text-muted">
+                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
+                    </svg>
+                    MBA
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-glass border border-glass-border text-xs font-medium text-muted">
+                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
+                    </svg>
+                    Head of Marketing, PharmaOverseas
+                  </span>
+                </div>
+
+                {/* Bio paragraphs */}
+                <div className="mt-6 space-y-4 text-muted leading-relaxed text-[15px]">
+                  <p>
+                    Dr. Mina Zakaria is a senior marketing executive and business
+                    consultant specializing in the Egyptian pharmaceutical market.
+                    Holding a Doctor of Business Administration (DBA) and an MBA,
+                    he brings a rigorous, academic approach to complex market
+                    operations and enterprise digital transformation.
+                  </p>
+                  <p>
+                    As the Head of Marketing at PharmaOverseas, Dr. Zakaria&apos;s
+                    tenure has been hallmarked by crafting dynamic growth strategies
+                    and steering the company&apos;s digital presence to unprecedented
+                    heights. He leads multifaceted teams spanning digital marketing,
+                    public relations, customer digital transformation, and customer
+                    service — ensuring that brand strategies are deeply rooted in
+                    market intelligence and data analytics.
+                  </p>
+                  <p>
+                    Driven by a commitment to enhanced customer satisfaction and
+                    brand loyalty, Dr. Zakaria&apos;s initiatives consistently align
+                    with broader corporate visions, ensuring that{" "}
+                    <span className="text-foreground font-medium">
+                      digital innovation and customer-centricity
+                    </span>{" "}
+                    are always at the forefront of his operations.
+                  </p>
+                </div>
+
+                {/* CTA */}
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a href="#episodes" className="btn-accent !text-sm !py-3 !px-6">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                    </svg>
+                    Listen to the Podcast
+                  </a>
+                  <a
+                    href="https://www.linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-glass !text-sm !py-3 !px-6"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    Connect on LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ────── Newsletter Section ────── */}
       <section className="py-24 px-6" id="newsletter">
         <div className="mx-auto max-w-3xl text-center">
