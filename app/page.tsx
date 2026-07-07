@@ -87,13 +87,15 @@ export default async function Home() {
       <nav className="glass-nav fixed top-0 left-0 right-0 z-50">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
           {/* Brand */}
-          <a href="/" className="flex items-center gap-3" id="nav-brand">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent to-amber-700 flex items-center justify-center">
-              <span className="text-background font-bold text-sm">A</span>
-            </div>
-            <span className="text-lg font-semibold tracking-tight">
-              Alsaydaliyah
-            </span>
+          <a href="/" className="flex items-center gap-2" id="nav-brand">
+            <Image
+              src="/logo.png"
+              alt="Alsaydaliyah"
+              width={140}
+              height={40}
+              className="h-9 w-auto object-contain brightness-110"
+              priority
+            />
           </a>
 
           {/* Nav Links */}
@@ -426,13 +428,14 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Brand */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-amber-700 flex items-center justify-center">
-                <span className="text-background font-bold text-xs">A</span>
-              </div>
-              <span className="font-semibold tracking-tight">
-                Alsaydaliyah
-              </span>
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="Alsaydaliyah"
+                width={120}
+                height={34}
+                className="h-8 w-auto object-contain brightness-110"
+              />
             </div>
 
             {/* Links */}
