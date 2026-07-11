@@ -1,7 +1,10 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { EPISODES_QUERY } from "@/sanity/lib/queries";
 import type { Episode } from "@/types";
+import { getDictionary, hasLocale, type Locale } from "./dictionaries";
+import Navbar from "./components/Navbar";
 
 /* ─── Mock data — used when Sanity has no episodes yet ─── */
 const MOCK_EPISODES: Episode[] = [
@@ -78,61 +81,16 @@ async function getEpisodes(): Promise<Episode[]> {
 }
 
 /* ─── Page Component ─── */
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const dict = await getDictionary(lang as Locale);
   const episodes = await getEpisodes();
 
   return (
     <>
       {/* ────── Navbar ────── */}
-      <nav className="glass-nav fixed top-0 left-0 right-0 z-50">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          {/* Brand */}
-          <a href="/" className="flex items-center gap-2" id="nav-brand">
-            <Image
-              src="/logo.png"
-              alt="Alsaydaliyah"
-              width={140}
-              height={40}
-              className="h-9 w-auto object-contain brightness-110"
-              priority
-            />
-          </a>
-
-          {/* Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#episodes"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-              id="nav-episodes"
-            >
-              Episodes
-            </a>
-            <a
-              href="#about"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-              id="nav-about"
-            >
-              About
-            </a>
-            <a
-              href="#contact"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-              id="nav-contact"
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* CTA */}
-          <a
-            href="#episodes"
-            className="btn-accent !py-2.5 !px-5 !text-sm"
-            id="nav-listen-cta"
-          >
-            Listen Now
-          </a>
-        </div>
-      </nav>
+      <Navbar lang={lang as Locale} dict={dict.nav} />
 
       {/* ────── Hero Section ────── */}
       <section
@@ -159,23 +117,22 @@ export default async function Home() {
           <div className="animate-fade-in-up">
             <span className="pill-badge" id="hero-badge">
               <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Season 1 Now Streaming
+              {dict.hero.badge}
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="mt-8 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] animate-fade-in-up animation-delay-100">
-            Decoding the
+          <h1 className="mt-8 text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.2] animate-fade-in-up animation-delay-100">
+            {dict.hero.headlineTop}
             <br />
-            <span className="text-gradient">Pharma Market.</span>
+            <span className="text-gradient">{dict.hero.headlineBottom}</span>
           </h1>
 
           {/* Sub-headline */}
           <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-            The premier B2B podcast bringing you inside the closed doors of top
-            pharmaceutical management. Hosted by{" "}
+            {dict.hero.subtitle}{" "}
             <span className="text-foreground font-medium">
-              Dr. Mina Zakaria Fakhry
+              {dict.hero.hostName}
             </span>
             .
           </p>
@@ -202,7 +159,7 @@ export default async function Home() {
                   d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              Listen to Season 1
+              {dict.hero.ctaListen}
             </a>
             <a href="#newsletter" className="btn-glass" id="hero-newsletter-cta">
               <svg
@@ -218,30 +175,30 @@ export default async function Home() {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              Join the Newsletter
+              {dict.hero.ctaNewsletter}
             </a>
           </div>
 
           {/* Stats */}
-          <div className="mt-16 flex items-center justify-center gap-12 animate-fade-in-up animation-delay-400">
+          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 animate-fade-in-up animation-delay-400">
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent">24+</div>
+              <div className="text-2xl font-bold text-foreground">{dict.hero.statEpisodes}</div>
               <div className="text-xs text-muted mt-1 uppercase tracking-wider">
-                Episodes
+                {dict.hero.statEpisodesLabel}
               </div>
             </div>
-            <div className="w-px h-10 bg-glass-border" />
+            <div className="hidden sm:block w-px h-10 bg-glass-border" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent">50K+</div>
+              <div className="text-2xl font-bold text-foreground">{dict.hero.statListeners}</div>
               <div className="text-xs text-muted mt-1 uppercase tracking-wider">
-                Listeners
+                {dict.hero.statListenersLabel}
               </div>
             </div>
-            <div className="w-px h-10 bg-glass-border" />
+            <div className="hidden sm:block w-px h-10 bg-glass-border" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent">18+</div>
+              <div className="text-2xl font-bold text-foreground">{dict.hero.statGuests}</div>
               <div className="text-xs text-muted mt-1 uppercase tracking-wider">
-                Industry Guests
+                {dict.hero.statGuestsLabel}
               </div>
             </div>
           </div>
@@ -263,11 +220,10 @@ export default async function Home() {
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="section-divider mx-auto mb-6" />
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Latest Episodes
+              {dict.episodes.title}
             </h2>
             <p className="mt-4 text-muted max-w-lg mx-auto">
-              Deep dives into the business of pharmaceuticals — strategy,
-              regulation, and leadership.
+              {dict.episodes.subtitle}
             </p>
           </div>
 
@@ -309,7 +265,7 @@ export default async function Home() {
                     className="text-xs text-muted uppercase tracking-wider"
                     dateTime={episode.publishedAt}
                   >
-                    {new Date(episode.publishedAt).toLocaleDateString("en-US", {
+                    {new Date(episode.publishedAt).toLocaleDateString(dict.episodes.dateLocale, {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
@@ -317,7 +273,7 @@ export default async function Home() {
                   </time>
 
                   {/* Title */}
-                  <h3 className="mt-2 text-lg font-semibold leading-snug line-clamp-2 group-hover:text-accent transition-colors duration-200">
+                  <h3 className="mt-2 text-lg font-semibold leading-snug line-clamp-2 group-hover:text-foreground/80 transition-colors duration-200">
                     {episode.title}
                   </h3>
 
@@ -346,10 +302,10 @@ export default async function Home() {
                       href={`https://www.youtube.com/watch?v=${episode.youtubeVideoId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-muted transition-colors"
                       id={`watch-${episode.slug.current}`}
                     >
-                      Watch Now
+                      {dict.episodes.watchNow}
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -397,18 +353,17 @@ export default async function Home() {
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="section-divider mx-auto mb-6" />
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Meet Your Host
+              {dict.about.title}
             </h2>
             <p className="mt-4 text-muted max-w-lg mx-auto">
-              The mind behind Alsaydaliyah — bridging pharma leadership with
-              digital innovation.
+              {dict.about.subtitle}
             </p>
           </div>
 
           <div className="glass-card overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
               {/* Portrait */}
-              <div className="lg:col-span-2 relative min-h-[400px] lg:min-h-[560px]">
+              <div className="lg:col-span-2 relative min-h-[300px] sm:min-h-[400px] lg:min-h-[560px]">
                 <Image
                   src="/dr-mina.png"
                   alt="Dr. Mina Zakaria Fakhry"
@@ -431,67 +386,51 @@ export default async function Home() {
                   >
                     <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                   </svg>
-                  Host &amp; Executive Producer
+                  {dict.about.badgeTitle}
                 </span>
 
                 {/* Name */}
                 <h3 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">
-                  Dr. Mina Zakaria Fakhry
+                  {dict.about.hostName}
                 </h3>
 
                 {/* Role */}
-                <p className="mt-2 text-accent font-medium text-lg">
-                  Strategic Visionary &amp; Digital Transformation Leader
+                <p className="mt-2 text-foreground/80 font-medium text-lg">
+                  {dict.about.hostRole}
                 </p>
 
                 {/* Credentials */}
                 <div className="mt-6 flex flex-wrap gap-3">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-glass border border-glass-border text-xs font-medium text-muted">
-                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-foreground/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
                     </svg>
-                    DBA
+                    {dict.about.credDBA}
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-glass border border-glass-border text-xs font-medium text-muted">
-                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-foreground/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
                     </svg>
-                    MBA
+                    {dict.about.credMBA}
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-glass border border-glass-border text-xs font-medium text-muted">
-                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-foreground/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
                     </svg>
-                    Head of Marketing, PharmaOverseas
+                    {dict.about.credRole}
                   </span>
                 </div>
 
                 {/* Bio paragraphs */}
                 <div className="mt-6 space-y-4 text-muted leading-relaxed text-[15px]">
+                  <p>{dict.about.bio1}</p>
+                  <p>{dict.about.bio2}</p>
                   <p>
-                    Dr. Mina Zakaria is a senior marketing executive and business
-                    consultant specializing in the Egyptian pharmaceutical market.
-                    Holding a Doctor of Business Administration (DBA) and an MBA,
-                    he brings a rigorous, academic approach to complex market
-                    operations and enterprise digital transformation.
-                  </p>
-                  <p>
-                    As the Head of Marketing at PharmaOverseas, Dr. Zakaria&apos;s
-                    tenure has been hallmarked by crafting dynamic growth strategies
-                    and steering the company&apos;s digital presence to unprecedented
-                    heights. He leads multifaceted teams spanning digital marketing,
-                    public relations, customer digital transformation, and customer
-                    service — ensuring that brand strategies are deeply rooted in
-                    market intelligence and data analytics.
-                  </p>
-                  <p>
-                    Driven by a commitment to enhanced customer satisfaction and
-                    brand loyalty, Dr. Zakaria&apos;s initiatives consistently align
-                    with broader corporate visions, ensuring that{" "}
+                    {dict.about.bio3prefix}{" "}
                     <span className="text-foreground font-medium">
-                      digital innovation and customer-centricity
+                      {dict.about.bio3highlight}
                     </span>{" "}
-                    are always at the forefront of his operations.
+                    {dict.about.bio3suffix}
                   </p>
                 </div>
 
@@ -501,7 +440,7 @@ export default async function Home() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
                     </svg>
-                    Listen to the Podcast
+                    {dict.about.ctaListen}
                   </a>
                   <a
                     href="https://www.linkedin.com"
@@ -512,7 +451,7 @@ export default async function Home() {
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
-                    Connect on LinkedIn
+                    {dict.about.ctaLinkedIn}
                   </a>
                 </div>
               </div>
@@ -527,27 +466,26 @@ export default async function Home() {
           <div className="glass-card p-12">
             <div className="section-divider mx-auto mb-6" />
             <h2 className="text-3xl font-bold tracking-tight">
-              Stay in the Loop
+              {dict.newsletter.title}
             </h2>
             <p className="mt-4 text-muted max-w-md mx-auto">
-              Get notified when new episodes drop. No spam — just pharma
-              insights delivered to your inbox.
+              {dict.newsletter.subtitle}
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
-                placeholder="your@email.com"
-                className="flex-1 px-5 py-3.5 rounded-xl bg-glass border border-glass-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/25 transition-all text-sm"
+                placeholder={dict.newsletter.placeholder}
+                className="flex-1 px-5 py-3.5 rounded-xl bg-glass border border-glass-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/30 focus:ring-1 focus:ring-foreground/15 transition-all text-sm"
                 id="newsletter-email"
               />
               <button className="btn-accent !rounded-xl" id="newsletter-submit">
-                Subscribe
+                {dict.newsletter.subscribe}
               </button>
             </div>
 
             <p className="mt-4 text-xs text-muted/60">
-              Join 2,000+ pharma professionals. Unsubscribe anytime.
+              {dict.newsletter.note}
             </p>
           </div>
         </div>
@@ -560,11 +498,11 @@ export default async function Home() {
             {/* Brand */}
             <div className="flex items-center gap-2">
               <Image
-                src="/logo.png"
-                alt="Alsaydaliyah"
+                src="/logo-transparent.png"
+                alt={lang === "ar" ? "الصيدلية بودكاست" : "Alsaydaliyah"}
                 width={120}
                 height={34}
-                className="h-8 w-auto object-contain brightness-110"
+                className="h-8 w-auto object-contain"
               />
             </div>
 
@@ -574,19 +512,19 @@ export default async function Home() {
                 href="#episodes"
                 className="hover:text-foreground transition-colors"
               >
-                Episodes
+              {dict.footer.episodes}
               </a>
               <a
                 href="#about"
                 className="hover:text-foreground transition-colors"
               >
-                About
+              {dict.footer.about}
               </a>
               <a
                 href="mailto:hello@alsaydaliyah.com"
                 className="hover:text-foreground transition-colors"
               >
-                Contact
+              {dict.footer.contact}
               </a>
             </div>
 
@@ -594,7 +532,7 @@ export default async function Home() {
             <div className="flex items-center gap-4">
               <a
                 href="#"
-                className="text-muted hover:text-accent transition-colors"
+                className="text-muted hover:text-foreground transition-colors"
                 aria-label="YouTube"
                 id="footer-youtube"
               >
@@ -608,7 +546,7 @@ export default async function Home() {
               </a>
               <a
                 href="#"
-                className="text-muted hover:text-accent transition-colors"
+                className="text-muted hover:text-foreground transition-colors"
                 aria-label="Spotify"
                 id="footer-spotify"
               >
@@ -622,7 +560,7 @@ export default async function Home() {
               </a>
               <a
                 href="#"
-                className="text-muted hover:text-accent transition-colors"
+                className="text-muted hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
                 id="footer-linkedin"
               >
@@ -640,7 +578,7 @@ export default async function Home() {
           {/* Copyright */}
           <div className="mt-8 pt-8 border-t border-glass-border text-center">
             <p className="text-sm text-muted/60">
-              © {new Date().getFullYear()} Alsaydaliyah. All rights reserved.
+              © {new Date().getFullYear()} {dict.footer.copyright}
             </p>
           </div>
         </div>

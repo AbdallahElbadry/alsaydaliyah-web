@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "episodes": "Episodes",
+    "about": "About",
+    "contact": "Contact",
+    "listenNow": "Listen Now"
+  },
+  "hero": {
+    "badge": "Season 1 Now Streaming",
+    "headlineTop": "Decoding the",
+    "headlineBottom": "Pharma Market.",
+    "subtitle": "The premier B2B podcast bringing you inside the closed doors of top pharmaceutical management. Hosted by",
+    "hostName": "Dr. Mina Zakaria Fakhry",
+    "ctaListen": "Listen to Season 1",
+    "ctaNewsletter": "Join the Newsletter",
+    "statEpisodes": "24+",
+    "statEpisodesLabel": "Episodes",
+    "statListeners": "50K+",
+    "statListenersLabel": "Listeners",
+    "statGuests": "18+",
+    "statGuestsLabel": "Industry Guests"
+  },
+  "episodes": {
+    "title": "Latest Episodes",
+    "subtitle": "Deep dives into the business of pharmaceuticals — strategy, regulation, and leadership.",
+    "watchNow": "Watch Now",
+    "dateLocale": "en-US"
+  },
+  "about": {
+    "title": "Meet Your Host",
+    "subtitle": "The mind behind Alsaydaliyah — bridging pharma leadership with digital innovation.",
+    "badgeTitle": "Host & Executive Producer",
+    "hostName": "Dr. Mina Zakaria Fakhry",
+    "hostRole": "Strategic Visionary & Digital Transformation Leader",
+    "credDBA": "DBA",
+    "credMBA": "MBA",
+    "credRole": "Head of Marketing, PharmaOverseas",
+    "bio1": "Dr. Mina Zakaria is a senior marketing executive and business consultant specializing in the Egyptian pharmaceutical market. Holding a Doctor of Business Administration (DBA) and an MBA, he brings a rigorous, academic approach to complex market operations and enterprise digital transformation.",
+    "bio2": "As the Head of Marketing at PharmaOverseas, Dr. Zakaria's tenure has been hallmarked by crafting dynamic growth strategies and steering the company's digital presence to unprecedented heights. He leads multifaceted teams spanning digital marketing, public relations, customer digital transformation, and customer service.",
+    "bio3prefix": "Driven by a commitment to enhanced customer satisfaction and brand loyalty, Dr. Zakaria's initiatives consistently align with broader corporate visions, ensuring that",
+    "bio3highlight": "digital innovation and customer-centricity",
+    "bio3suffix": "are always at the forefront of his operations.",
+    "ctaListen": "Listen to the Podcast",
+    "ctaLinkedIn": "Connect on LinkedIn"
+  },
+  "newsletter": {
+    "title": "Stay in the Loop",
+    "subtitle": "Get notified when new episodes drop. No spam — just pharma insights delivered to your inbox.",
+    "placeholder": "your@email.com",
+    "subscribe": "Subscribe",
+    "note": "Join 2,000+ pharma professionals. Unsubscribe anytime."
+  },
+  "footer": {
+    "episodes": "Episodes",
+    "about": "About",
+    "contact": "Contact",
+    "copyright": "Alsaydaliyah. All rights reserved."
+  }
+}
