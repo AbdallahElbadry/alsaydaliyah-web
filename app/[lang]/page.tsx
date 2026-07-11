@@ -443,7 +443,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                     {dict.about.ctaListen}
                   </a>
                   <a
-                    href="https://www.linkedin.com"
+                    href="https://www.linkedin.com/in/mina-zakaria-fakhry-head-of-marketing-dba-ama-google-udacity-pharma-industry-leader/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-glass !text-sm !py-3 !px-6"
@@ -559,7 +559,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/mina-zakaria-fakhry-head-of-marketing-dba-ama-google-udacity-pharma-industry-leader/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
                 id="footer-linkedin"
