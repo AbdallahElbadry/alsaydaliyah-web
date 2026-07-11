@@ -365,7 +365,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               {/* Portrait */}
               <div className="lg:col-span-2 relative min-h-[300px] sm:min-h-[400px] lg:min-h-[560px]">
                 <Image
-                  src="/dr-mina.png"
+                  src="/dr-mina.jpg"
                   alt="Dr. Mina Zakaria Fakhry"
                   fill
                   className="object-cover object-top"
