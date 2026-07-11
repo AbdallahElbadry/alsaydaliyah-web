@@ -31,9 +31,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           <Image
             src="/logo-transparent.png"
             alt={isArabic ? "الصيدلية بودكاست" : "Alsaydaliyah"}
-            width={140}
-            height={40}
-            className="h-9 w-auto object-contain"
+            width={141}
+            height={60}
+            className="h-10 sm:h-11 md:h-12 w-auto object-contain"
             priority
           />
         </a>
@@ -69,13 +69,15 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           <LanguageSwitcher lang={lang} />
 
           {/* Desktop Listen Now CTA */}
-          <a
-            href="#episodes"
-            className="hidden sm:inline-flex btn-accent !py-2.5 !px-5 !text-sm"
-            id="nav-listen-cta"
-          >
-            {dict.listenNow}
-          </a>
+          <span className="hidden md:inline-flex">
+            <a
+              href="#episodes"
+              className="btn-accent !py-2.5 !px-5 !text-sm"
+              id="nav-listen-cta"
+            >
+              {dict.listenNow}
+            </a>
+          </span>
 
           {/* Mobile Hamburger button */}
           <button
@@ -139,14 +141,16 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             {dict.contact}
           </a>
 
-          {/* Mobile CTA (visible only on mobile viewports under 640px) */}
-          <a
-            href="#episodes"
-            onClick={closeMenu}
-            className="sm:hidden btn-accent justify-center w-full text-center mt-2"
-          >
-            {dict.listenNow}
-          </a>
+          {/* Mobile CTA (visible only on mobile viewports under 768px) */}
+          <span className="md:hidden w-full flex">
+            <a
+              href="#episodes"
+              onClick={closeMenu}
+              className="btn-accent justify-center w-full text-center mt-2"
+            >
+              {dict.listenNow}
+            </a>
+          </span>
         </div>
       </div>
     </nav>
