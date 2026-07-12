@@ -12,16 +12,28 @@ export default function NewsletterForm({ subscribe, thankYou, thankYouNote }: Pr
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
-    // Simulate a short delay then show thank-you
-    setTimeout(() => {
-      setLoading(false);
+    setError("");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) throw new Error("Failed");
       setSubmitted(true);
-    }, 800);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -39,35 +51,40 @@ export default function NewsletterForm({ subscribe, thankYou, thankYouNote }: Pr
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-      noValidate
-    >
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        required
-        className="flex-1 px-5 py-3.5 rounded-xl bg-glass border border-glass-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/30 focus:ring-1 focus:ring-foreground/15 transition-all text-sm"
-        id="newsletter-email"
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="btn-accent !rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
-        id="newsletter-submit"
+    <div className="flex flex-col items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md w-full mx-auto"
+        noValidate
       >
-        {loading ? (
-          <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-          </svg>
-        ) : (
-          subscribe
-        )}
-      </button>
-    </form>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          required
+          className="flex-1 px-5 py-3.5 rounded-xl bg-glass border border-glass-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/30 focus:ring-1 focus:ring-foreground/15 transition-all text-sm"
+          id="newsletter-email"
+        />
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-accent !rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+          id="newsletter-submit"
+        >
+          {loading ? (
+            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+            </svg>
+          ) : (
+            subscribe
+          )}
+        </button>
+      </form>
+      {error && (
+        <p className="mt-3 text-sm text-red-400">{error}</p>
+      )}
+    </div>
   );
 }
