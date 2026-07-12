@@ -101,96 +101,31 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
       {/* ────── Hero Section ────── */}
       <section
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+        className="relative overflow-hidden pt-24 pb-0"
         id="hero"
       >
         {/* Ambient gradient orbs */}
         <div className="gradient-orb gradient-orb-1" aria-hidden="true" />
         <div className="gradient-orb gradient-orb-2" aria-hidden="true" />
 
-        {/* Grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          aria-hidden="true"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          {/* Pill Badge */}
-          <div className="animate-fade-in-up">
-            <span className="pill-badge" id="hero-badge">
-              <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse" />
-              {dict.hero.badge}
-            </span>
-          </div>
-
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           {/* Headline */}
-          <h1 className="mt-8 text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.2] animate-fade-in-up animation-delay-100">
-            {dict.hero.headlineTop}
-            <br />
-            <span className="text-gradient">{dict.hero.headlineBottom}</span>
-          </h1>
-
-          {/* Sub-headline */}
-          <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-            {dict.hero.subtitle}{" "}
-            <span className="text-foreground font-medium">
-              {dict.hero.hostName}
-            </span>
-            .
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-300">
-            <a href="#episodes" className="btn-accent" id="hero-listen-cta">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              {dict.hero.ctaListen}
-            </a>
-            <a href="#newsletter" className="btn-glass" id="hero-newsletter-cta">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              {dict.hero.ctaNewsletter}
-            </a>
+          <div className="text-center mb-10 animate-fade-in-up">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15]">
+              {dict.hero.headlineTop}{" "}
+              <span className="text-gradient">{dict.hero.headlineBottom}</span>
+            </h1>
           </div>
-          {/* Promo Video */}
-          <div className="mt-16 animate-fade-in-up animation-delay-500 w-full max-w-4xl mx-auto rounded-2xl overflow-hidden glass-card p-2 shadow-2xl relative z-20" id="hero-promo-video">
-            <div className="relative pt-[56.25%] w-full h-0 rounded-xl overflow-hidden bg-black/50">
+
+          {/* Promo Video — wide, edge-to-edge feel */}
+          <div
+            className="animate-fade-in-up animation-delay-100 w-full rounded-2xl overflow-hidden shadow-2xl"
+            id="hero-promo-video"
+          >
+            <div className="relative pt-[56.25%] w-full h-0 rounded-2xl overflow-hidden bg-black">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/X1hdO7TOrS4?autoplay=0"
+                src="https://www.youtube.com/embed/X1hdO7TOrS4?autoplay=0&rel=0&modestbranding=1"
                 title="Podcast Promo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -198,12 +133,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </div>
           </div>
         </div>
-
-        {/* Bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"
-          aria-hidden="true"
-        />
       </section>
 
       {/* ────── Episodes Section ────── */}
