@@ -7,6 +7,11 @@ export interface Episode {
   publishedAt: string;
   guestName: string;
   guestTitle: string;
-  youtubeVideoId: string;
+  youtubeVideoId?: string;
+  youtubeLink?: string;
   spotifyLink?: string;
+  applePodcastLink?: string;
+  thumbnail?: string;
+  status?: "published" | "upcoming";
+  airDate?: string;
 }

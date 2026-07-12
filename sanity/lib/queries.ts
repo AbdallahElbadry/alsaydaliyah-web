@@ -9,6 +9,11 @@ export const EPISODES_QUERY = defineQuery(
     guestName,
     guestTitle,
     youtubeVideoId,
-    spotifyLink
+    youtubeLink,
+    spotifyLink,
+    applePodcastLink,
+    "thumbnail": thumbnail.asset->url,
+    status,
+    airDate
   }`
 );

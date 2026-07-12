@@ -24,7 +24,8 @@
     "title": "Latest Episodes",
     "subtitle": "Deep dives into the business of pharmaceuticals — strategy, regulation, and leadership.",
     "watchNow": "Watch Now",
-    "dateLocale": "en-US"
+    "dateLocale": "en-US",
+    "airDateLabel": "Airing on"
   },
   "about": {
     "title": "Meet Your Host",

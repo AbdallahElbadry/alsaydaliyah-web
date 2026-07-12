@@ -42,7 +42,12 @@ export const episode = defineType({
       name: "youtubeVideoId",
       title: "YouTube Video ID",
       type: "string",
-      description: "The video ID from the YouTube URL (e.g. dQw4w9WgXcQ)",
+      description: "The video ID from the YouTube URL (e.g. dQw4w9WgXcQ) - used for auto-generated thumbnails if no custom thumbnail is provided",
+    }),
+    defineField({
+      name: "youtubeLink",
+      title: "YouTube Link",
+      type: "url",
     }),
     defineField({
       name: "spotifyLink",
@@ -52,6 +57,43 @@ export const episode = defineType({
         rule.uri({
           scheme: ["http", "https"],
         }),
+    }),
+    defineField({
+      name: "applePodcastLink",
+      title: "Apple Podcasts Link",
+      type: "url",
+      validation: (rule) =>
+        rule.uri({
+          scheme: ["http", "https"],
+        }),
+    }),
+    defineField({
+      name: "thumbnail",
+      title: "Thumbnail Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      description: "Upload a custom thumbnail for the episode (falls back to YouTube thumbnail if not provided)",
+    }),
+    defineField({
+      name: "status",
+      title: "Episode Status",
+      type: "string",
+      options: {
+        list: [
+          { title: "Published", value: "published" },
+          { title: "Upcoming", value: "upcoming" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "published",
+    }),
+    defineField({
+      name: "airDate",
+      title: "Air Date (for upcoming episodes)",
+      type: "datetime",
+      hidden: ({ document }) => document?.status !== "upcoming",
     }),
     defineField({
       name: "showNotes",
