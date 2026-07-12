@@ -5,6 +5,7 @@ import { EPISODES_QUERY } from "@/sanity/lib/queries";
 import type { Episode } from "@/types";
 import { getDictionary, hasLocale, type Locale } from "./dictionaries";
 import Navbar from "./components/Navbar";
+import NewsletterForm from "./components/NewsletterForm";
 
 /* ─── Mock data — used when Sanity has no episodes yet ─── */
 const MOCK_EPISODES: Episode[] = [
@@ -424,21 +425,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               {dict.newsletter.subtitle}
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder={dict.newsletter.placeholder}
-                className="flex-1 px-5 py-3.5 rounded-xl bg-glass border border-glass-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/30 focus:ring-1 focus:ring-foreground/15 transition-all text-sm"
-                id="newsletter-email"
-              />
-              <button className="btn-accent !rounded-xl" id="newsletter-submit">
-                {dict.newsletter.subscribe}
-              </button>
-            </div>
-
-            <p className="mt-4 text-xs text-muted/60">
-              {dict.newsletter.note}
-            </p>
+            <NewsletterForm
+              subscribe={dict.newsletter.subscribe}
+              thankYou={dict.newsletter.thankYou}
+              thankYouNote={dict.newsletter.thankYouNote}
+            />
           </div>
         </div>
       </section>

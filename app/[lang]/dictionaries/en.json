@@ -47,9 +47,9 @@
   "newsletter": {
     "title": "Stay in the Loop",
     "subtitle": "Get notified when new episodes drop. No spam — just pharma insights delivered to your inbox.",
-    "placeholder": "your@email.com",
     "subscribe": "Subscribe",
-    "note": "Join 2,000+ pharma professionals. Unsubscribe anytime."
+    "thankYou": "You're subscribed!",
+    "thankYouNote": "We'll notify you when new episodes drop."
   },
   "footer": {
     "episodes": "Episodes",
