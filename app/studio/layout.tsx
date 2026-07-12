@@ -1,8 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { metadata as studioMetadata, viewport as studioViewport } from "next-sanity/studio";
 
 export const metadata: Metadata = {
+  ...studioMetadata,
   title: "Alsaydaliyah Studio",
-  robots: { index: false },
+};
+
+export const viewport: Viewport = {
+  ...studioViewport,
+  viewportFit: studioViewport.viewportFit as "auto" | "cover" | "contain" | undefined,
+  interactiveWidget: "resizes-content",
 };
 
 export default function StudioLayout({
@@ -12,7 +19,7 @@ export default function StudioLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body style={{ margin: 0 }}>{children}</body>
     </html>
   );
 }
