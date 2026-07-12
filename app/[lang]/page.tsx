@@ -6,6 +6,7 @@ import type { Episode } from "@/types";
 import { getDictionary, hasLocale, type Locale } from "./dictionaries";
 import Navbar from "./components/Navbar";
 import NewsletterForm from "./components/NewsletterForm";
+import HeroVideo from "./components/HeroVideo";
 
 /* ─── Mock data — used when Sanity has no episodes yet ─── */
 const MOCK_EPISODES: Episode[] = [
@@ -116,15 +117,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             className="animate-fade-in-up animation-delay-100 w-full rounded-2xl overflow-hidden shadow-2xl"
             id="hero-promo-video"
           >
-            <div className="relative pt-[56.25%] w-full h-0 rounded-2xl overflow-hidden bg-black">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/X1hdO7TOrS4?autoplay=0&rel=0&modestbranding=1"
-                title="Podcast Promo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <HeroVideo
+              videoId="X1hdO7TOrS4"
+              playLabel={dict.episodes.watchNow}
+            />
           </div>
         </div>
       </section>
