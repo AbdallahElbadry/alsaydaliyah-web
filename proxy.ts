@@ -35,7 +35,7 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Exclude API, static assets, images, etc.
-    "/((?!api|_next/static|_next/image|favicon.ico|logo-transparent.png|dr-mina.png|.*\\.png|.*\\.jpg).*)",
+    // Exclude API, static assets, images, Sanity Studio, etc.
+    "/((?!api|studio|_next/static|_next/image|favicon.ico|logo-transparent.png|dr-mina.png|.*\\.png|.*\\.jpg).*)",
   ],
 };
