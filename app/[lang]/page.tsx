@@ -185,31 +185,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               {dict.hero.ctaNewsletter}
             </a>
           </div>
-
-          {/* Stats */}
-          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 animate-fade-in-up animation-delay-400">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">{dict.hero.statEpisodes}</div>
-              <div className="text-xs text-muted mt-1 uppercase tracking-wider">
-                {dict.hero.statEpisodesLabel}
-              </div>
-            </div>
-            <div className="hidden sm:block w-px h-10 bg-glass-border" />
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">{dict.hero.statListeners}</div>
-              <div className="text-xs text-muted mt-1 uppercase tracking-wider">
-                {dict.hero.statListenersLabel}
-              </div>
-            </div>
-            <div className="hidden sm:block w-px h-10 bg-glass-border" />
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">{dict.hero.statGuests}</div>
-              <div className="text-xs text-muted mt-1 uppercase tracking-wider">
-                {dict.hero.statGuestsLabel}
-              </div>
-            </div>
-          </div>
-
           {/* Promo Video */}
           <div className="mt-16 animate-fade-in-up animation-delay-500 w-full max-w-4xl mx-auto rounded-2xl overflow-hidden glass-card p-2 shadow-2xl relative z-20" id="hero-promo-video">
             <div className="relative pt-[56.25%] w-full h-0 rounded-xl overflow-hidden bg-black/50">
