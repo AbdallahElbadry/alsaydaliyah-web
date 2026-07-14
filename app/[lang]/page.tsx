@@ -89,8 +89,55 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   const dict = await getDictionary(lang as Locale);
   const episodes = await getEpisodes();
 
+  const isArabic = lang === "ar";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://alsaydaliyah.com";
+
+  const podcastSchema = {
+    "@context": "https://schema.org",
+    "@type": "PodcastSeries",
+    "@id": `${siteUrl}/${lang}`,
+    "url": `${siteUrl}/${lang}`,
+    "name": isArabic ? "الصيدلية بودكاست — فك شفرة سوق الدواء" : "Alsaydaliyah — Decoding the Pharma Market",
+    "description": isArabic
+      ? "البودكاست الأول من نوعه في مجال الأعمال الدوائية، يأخذك خلف أبواب الإدارة العليا لكبرى شركات الأدوية. تقديم د. مينا زكريا فخري."
+      : "The premier B2B podcast bringing you inside the closed doors of top pharmaceutical management. Hosted by Dr. Mina Zakaria Fakhry.",
+    "image": `${siteUrl}/og-image.png`,
+    "author": {
+      "@type": "Person",
+      "name": isArabic ? "د. مينا زكريا فخري" : "Dr. Mina Zakaria Fakhry",
+      "jobTitle": isArabic ? "مقدم البودكاست وخبير التسويق الدوائي" : "Podcast Host & Pharma Marketing Leader",
+      "url": "https://www.linkedin.com/in/mina-zakaria-fakhry-head-of-marketing-dba-ama-google-udacity-pharma-industry-leader/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": isArabic ? "الصيدلية بودكاست" : "Alsaydaliyah Podcast",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`
+      }
+    },
+    "hasPart": episodes.map((episode) => ({
+      "@type": "PodcastEpisode",
+      "@id": `${siteUrl}/${lang}#episode-${episode.slug.current}`,
+      "name": episode.title,
+      "description": episode.guestName ? `${episode.guestName} - ${episode.guestTitle}` : episode.title,
+      "datePublished": episode.publishedAt || episode.airDate,
+      "url": episode.youtubeLink || (episode.youtubeVideoId ? `https://www.youtube.com/watch?v=${episode.youtubeVideoId}` : `${siteUrl}/${lang}`),
+      "associatedMedia": episode.youtubeVideoId ? {
+        "@type": "MediaObject",
+        "contentUrl": `https://www.youtube.com/watch?v=${episode.youtubeVideoId}`
+      } : undefined
+    }))
+  };
+
   return (
     <>
+      {/* ────── Structured Data (JSON-LD) for Podcast SEO ────── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(podcastSchema) }}
+      />
+
       {/* ────── Navbar ────── */}
       <Navbar lang={lang as Locale} dict={dict.nav} />
 
@@ -118,7 +165,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             id="hero-promo-video"
           >
             <HeroVideo
-              videoId="X1hdO7TOrS4"
+              videoId="w7wAQUWRA3E"
               playLabel={dict.episodes.watchNow}
             />
           </div>
