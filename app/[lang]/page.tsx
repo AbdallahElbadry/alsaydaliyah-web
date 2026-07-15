@@ -510,7 +510,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {/* Social */}
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href="https://www.youtube.com/channel/UCGWc5g2dInTp-eA8_xi7lJw"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted hover:text-foreground transition-colors"
                 aria-label="YouTube"
                 id="footer-youtube"
@@ -524,7 +526,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://open.spotify.com/show/033OvM3BnMYtjggPkkQMJM"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted hover:text-foreground transition-colors"
                 aria-label="Spotify"
                 id="footer-spotify"
@@ -538,7 +542,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/in/mina-zakaria-fakhry-head-of-marketing-dba-ama-google-udacity-pharma-industry-leader/"
+                href="https://www.linkedin.com/company/alsaydaliyah-podcast/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted hover:text-foreground transition-colors"
@@ -557,9 +561,20 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </div>
 
           {/* Copyright */}
-          <div className="mt-8 pt-8 border-t border-glass-border text-center">
+          <div className="mt-8 pt-8 border-t border-glass-border text-center flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted/60">
               © {new Date().getFullYear()} {dict.footer.copyright}
+            </p>
+            <p className="text-sm text-muted/60">
+              {dict.footer.madeBy}{" "}
+              <a
+                href="https://daldart.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-accent transition-colors duration-200 font-medium"
+              >
+                daldart
+              </a>
             </p>
           </div>
         </div>
