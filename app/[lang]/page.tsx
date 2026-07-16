@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import NewsletterForm from "./components/NewsletterForm";
 import HeroVideo from "./components/HeroVideo";
 
+export const revalidate = 60; // Revalidate the page every 60 seconds
+
 /* ─── Data fetching ─── */
 async function getEpisodes(): Promise<Episode[]> {
   try {
