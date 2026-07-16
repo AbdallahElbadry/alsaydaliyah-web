@@ -8,77 +8,13 @@ import Navbar from "./components/Navbar";
 import NewsletterForm from "./components/NewsletterForm";
 import HeroVideo from "./components/HeroVideo";
 
-/* ─── Mock data — used when Sanity has no episodes yet ─── */
-const MOCK_EPISODES: Episode[] = [
-  {
-    _id: "ep-001",
-    title: "أسرار إدارة الشركات متعددة الجنسيات في سوق الدواء",
-    slug: { current: "episode-1-ali-omar" },
-    publishedAt: "2026-07-15T13:00:00Z",
-    guestName: "د. علي عمر",
-    guestTitle: "خبير قطاع الأدوية (خبرة 25 عاماً في قيادة Multinationals)",
-    status: "upcoming",
-    airDate: "2026-07-15T13:00:00Z",
-  },
-  {
-    _id: "ep-002",
-    title: "خريطة التوزيع وسلاسل الإمداد في قطاع الدواء",
-    slug: { current: "episode-2-sherif-raafat" },
-    publishedAt: "2026-07-25T13:00:00Z",
-    guestName: "د. شريف رأفت",
-    guestTitle: "خبير التوزيع الدوائي",
-    status: "upcoming",
-    airDate: "2026-07-25T13:00:00Z",
-  },
-  {
-    _id: "ep-003",
-    title: "كواليس التحول المؤسسي وتصدير الدواء المصري",
-    slug: { current: "episode-3-nirvana-shalaby" },
-    publishedAt: "2026-08-04T13:00:00Z",
-    guestName: "أ. نيرفانا شلبي",
-    guestTitle: "نائب الرئيس التنفيذي - نيرهادو إنترناشيونال",
-    status: "upcoming",
-    airDate: "2026-08-04T13:00:00Z",
-  },
-  {
-    _id: "ep-004",
-    title: "من المحلية للعالمية: قصة نجاح نيرهادو",
-    slug: { current: "episode-4-mohsen-shalaby" },
-    publishedAt: "2026-08-14T13:00:00Z",
-    guestName: "د. محسن شلبي",
-    guestTitle: "مؤسس ورئيس مجلس إدارة - نيرهادو إنترناشيونال",
-    status: "upcoming",
-    airDate: "2026-08-14T13:00:00Z",
-  },
-  {
-    _id: "ep-005",
-    title: "قيادة التحالفات الدوائية وتعميق التصنيع المحلي",
-    slug: { current: "episode-5-asem-el-okbawy" },
-    publishedAt: "2026-08-24T13:00:00Z",
-    guestName: "د. عاصم العقباوي",
-    guestTitle: "رئيس شركة أكديما إنترناشيونال",
-    status: "upcoming",
-    airDate: "2026-08-24T13:00:00Z",
-  },
-  {
-    _id: "ep-006",
-    title: "الاستثمار في الرعاية الصحية: رؤية شاملة",
-    slug: { current: "episode-6-raafat-ghabbour" },
-    publishedAt: "2026-09-03T13:00:00Z",
-    guestName: "د. رأفت غبور",
-    guestTitle: "خبير قطاع الأدوية والرعاية الصحية",
-    status: "upcoming",
-    airDate: "2026-09-03T13:00:00Z",
-  }
-];
-
 /* ─── Data fetching ─── */
 async function getEpisodes(): Promise<Episode[]> {
   try {
     const episodes = await client.fetch<Episode[]>(EPISODES_QUERY);
-    return episodes && episodes.length > 0 ? episodes : MOCK_EPISODES;
+    return episodes || [];
   } catch {
-    return MOCK_EPISODES;
+    return [];
   }
 }
 
@@ -441,6 +377,17 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                     {dict.about.ctaLinkedIn}
+                  </a>
+                  <a
+                    href="https://mina-zakaria.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-glass !text-sm !py-3 !px-6"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                    {dict.about.ctaWebsite}
                   </a>
                 </div>
               </div>
